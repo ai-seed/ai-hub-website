@@ -15,38 +15,30 @@ const partnersData = {
       tech: {
         title: "技术合作伙伴",
         partners: [
-          { name: "OpenAI", logo: "/placeholder.svg?height=60&width=120&text=OpenAI", url: "https://openai.com" },
-          {
-            name: "Google Cloud",
-            logo: "/placeholder.svg?height=60&width=120&text=Google",
-            url: "https://cloud.google.com",
-          },
-          {
-            name: "Microsoft Azure",
-            logo: "/placeholder.svg?height=60&width=120&text=Azure",
-            url: "https://azure.microsoft.com",
-          },
-          { name: "AWS", logo: "/placeholder.svg?height=60&width=120&text=AWS", url: "https://aws.amazon.com" },
+          { name: "OpenAI", logo: "/images/openai.svg", url: "https://openai.com" },
+          { name: "Google Cloud", logo: "/images/google-cloud.svg", url: "https://cloud.google.com", className: "mt-2"},
+          { name: "Microsoft Azure", logo: "/images/microsoft-azure.svg", url: "https://azure.microsoft.com"},
+          { name: "AWS", logo: "/images/amazon.svg", url: "https://aws.amazon.com" },
         ],
       },
-      enterprise: {
-        title: "企业客户",
-        partners: [
-          { name: "阿里巴巴", logo: "/placeholder.svg?height=60&width=120&text=Alibaba", url: "#" },
-          { name: "腾讯", logo: "/placeholder.svg?height=60&width=120&text=Tencent", url: "#" },
-          { name: "字节跳动", logo: "/placeholder.svg?height=60&width=120&text=ByteDance", url: "#" },
-          { name: "美团", logo: "/placeholder.svg?height=60&width=120&text=Meituan", url: "#" },
-        ],
-      },
-      investment: {
-        title: "投资机构",
-        partners: [
-          { name: "红杉资本", logo: "/placeholder.svg?height=60&width=120&text=Sequoia", url: "#" },
-          { name: "IDG资本", logo: "/placeholder.svg?height=60&width=120&text=IDG", url: "#" },
-          { name: "经纬中国", logo: "/placeholder.svg?height=60&width=120&text=Matrix", url: "#" },
-          { name: "真格基金", logo: "/placeholder.svg?height=60&width=120&text=ZhenFund", url: "#" },
-        ],
-      },
+      // enterprise: {
+      //   title: "企业客户",
+      //   partners: [
+      //     { name: "阿里巴巴", logo: "/placeholder.svg?height=60&width=120&text=Alibaba", url: "#" },
+      //     { name: "腾讯", logo: "/placeholder.svg?height=60&width=120&text=Tencent", url: "#" },
+      //     { name: "字节跳动", logo: "/placeholder.svg?height=60&width=120&text=ByteDance", url: "#" },
+      //     { name: "美团", logo: "/placeholder.svg?height=60&width=120&text=Meituan", url: "#" },
+      //   ],
+      // },
+      // investment: {
+      //   title: "投资机构",
+      //   partners: [
+      //     { name: "红杉资本", logo: "/placeholder.svg?height=60&width=120&text=Sequoia", url: "#" },
+      //     { name: "IDG资本", logo: "/placeholder.svg?height=60&width=120&text=IDG", url: "#" },
+      //     { name: "经纬中国", logo: "/placeholder.svg?height=60&width=120&text=Matrix", url: "#" },
+      //     { name: "真格基金", logo: "/placeholder.svg?height=60&width=120&text=ZhenFund", url: "#" },
+      //   ],
+      // },
     },
     friendLinks: {
       title: "友情链接",
@@ -165,7 +157,10 @@ export default function PartnersSection({ lang }: PartnersSectionProps) {
                             <img
                               src={partner.logo || "/placeholder.svg"}
                               alt={partner.name}
-                              className="max-w-full max-h-full object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300"
+                              // className="max-w-full max-h-full object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300"
+                              className={`max-w-full max-h-full object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300 ${
+                                partner.className || ""
+                              }`}
                             />
                           </a>
                         </CardContent>
