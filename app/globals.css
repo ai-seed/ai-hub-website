@@ -7,51 +7,61 @@
 
 /* Markdown 样式 */
 @layer components {
+
   /* rehype-pretty-code 生成的代码块容器 */
   [data-rehype-pretty-code-fragment] {
     @apply relative mb-4 rounded-lg overflow-hidden border border-gray-200;
-    background-color: #282c34; /* 默认背景色，与 github-dark 主题匹配 */
-    color: #abb2bf; /* 默认文本颜色 */
+    background-color: #282c34;
+    /* 默认背景色，与 github-dark 主题匹配 */
+    color: #abb2bf;
+    /* 默认文本颜色 */
   }
 
   /* 代码块头部，包含语言和复制按钮 */
-  [data-rehype-pretty-code-fragment] > .code-block-header {
+  [data-rehype-pretty-code-fragment]>.code-block-header {
     @apply flex items-center justify-between px-4 py-2 bg-gray-800 text-gray-300 text-sm;
   }
 
-  [data-rehype-pretty-code-fragment] > .code-block-header > .code-block-lang {
+  [data-rehype-pretty-code-fragment]>.code-block-header>.code-block-lang {
     @apply font-mono text-xs uppercase tracking-wide;
   }
 
-  [data-rehype-pretty-code-fragment] > .code-block-header > .code-copy-btn {
+  [data-rehype-pretty-code-fragment]>.code-block-header>.code-copy-btn {
     @apply flex items-center space-x-1 px-2 py-1 rounded text-xs hover:bg-gray-700 transition-colors;
   }
 
-  [data-rehype-pretty-code-fragment] > .code-block-header > .code-copy-btn:hover {
+  [data-rehype-pretty-code-fragment]>.code-block-header>.code-copy-btn:hover {
     @apply text-white;
   }
 
   /* 代码内容区域 */
-  [data-rehype-pretty-code-fragment] > pre {
+  [data-rehype-pretty-code-fragment]>pre {
     @apply p-4 overflow-x-auto text-sm leading-relaxed;
     font-family: "Fira Code", "Monaco", "Cascadia Code", "Roboto Mono", monospace;
     white-space: pre;
     tab-size: 2;
-    background-color: inherit; /* 继承父容器背景色 */
-    color: inherit; /* 继承父容器文本颜色 */
-    white-space: pre-wrap; /* Ensure long lines wrap */
-    word-break: break-all; /* Allow breaking long words */
+    background-color: inherit;
+    /* 继承父容器背景色 */
+    color: inherit;
+    /* 继承父容器文本颜色 */
+    white-space: pre-wrap;
+    /* Ensure long lines wrap */
+    word-break: break-all;
+    /* Allow breaking long words */
   }
 
   /* Individual lines within the code block */
-  [data-rehype-pretty-code-fragment] > pre > code > .line {
-    display: block; /* Make each line span a block element */
-    min-height: 1em; /* Ensure empty lines are visible */
-    white-space: pre-wrap; /* Ensure wrapping within lines if needed */
+  [data-rehype-pretty-code-fragment]>pre>code>.line {
+    display: block;
+    /* Make each line span a block element */
+    min-height: 1em;
+    /* Ensure empty lines are visible */
+    white-space: pre-wrap;
+    /* Ensure wrapping within lines if needed */
   }
 
   /* 代码行 */
-  [data-rehype-pretty-code-fragment] > pre > code {
+  [data-rehype-pretty-code-fragment]>pre>code {
     @apply bg-transparent text-inherit;
     font-family: inherit;
     white-space: pre;
@@ -59,13 +69,15 @@
 
   /* 高亮行 */
   .line--highlighted {
-    background-color: rgba(255, 255, 255, 0.1); /* 浅色背景高亮 */
+    background-color: rgba(255, 255, 255, 0.1);
+    /* 浅色背景高亮 */
     display: block;
     margin-right: -1rem;
     margin-left: -1rem;
     padding-right: 1rem;
     padding-left: 1rem;
-    border-left: 2px solid #61afef; /* 左侧蓝色边框 */
+    border-left: 2px solid #61afef;
+    /* 左侧蓝色边框 */
   }
 
   /* 行内代码样式 */
@@ -110,7 +122,7 @@
       @apply mx-0;
     }
 
-    [data-rehype-pretty-code-fragment] > pre {
+    [data-rehype-pretty-code-fragment]>pre {
       @apply text-xs;
     }
   }
@@ -152,6 +164,7 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -192,6 +205,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
