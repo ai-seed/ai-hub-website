@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
+import { useLanguage } from "@/lib/i18n"
 
 interface PartnersSectionProps {
-  lang: "zh" | "en"
+  // Optional props for backward compatibility
+  lang?: "zh" | "en"
 }
 
 const partnersData = {
@@ -103,7 +105,9 @@ const partnersData = {
   },
 }
 
-export default function PartnersSection({ lang }: PartnersSectionProps) {
+export default function PartnersSection({ lang: propLang }: PartnersSectionProps) {
+  const { language } = useLanguage()
+  const lang = propLang || language
   const data = partnersData[lang]
 
   return (

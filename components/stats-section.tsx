@@ -1,34 +1,22 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useTranslation } from "@/lib/i18n"
 
 interface StatsSectionProps {
-  lang: "zh" | "en"
+  // Optional props for backward compatibility
+  lang?: "zh" | "en"
 }
 
-const stats = {
-  zh: [
-    { number: "99.9%", label: "服务可用性" },
-    { number: "50ms", label: "平均响应时间" },
-    { number: "10M+", label: "月API调用量" },
-    { number: "150+", label: "服务国家地区" },
-  ],
-  en: [
-    { number: "99.9%", label: "Service Uptime" },
-    { number: "50ms", label: "Average Response" },
-    { number: "10M+", label: "Monthly API Calls" },
-    { number: "150+", label: "Countries Served" },
-  ],
-}
-
-export default function StatsSection({ lang }: StatsSectionProps) {
-  const statsList = stats[lang]
+export default function StatsSection({}: StatsSectionProps) {
+  const { t } = useTranslation()
+  const statsList = t("stats")
 
   return (
     <section className="py-16 bg-white border-t border-gray-100">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {statsList.map((stat, index) => (
+          {statsList.map((stat: any, index: number) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}

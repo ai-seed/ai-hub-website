@@ -2,39 +2,34 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Globe, Menu } from "lucide-react"
+import { Menu } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { useLanguage, useTranslation } from "@/lib/i18n"
+import LanguageSelector from "@/components/language-selector"
 
 interface HeaderProps {
-  lang: "zh" | "en"
+  // Optional props for backward compatibility
+  lang?: "zh" | "en"
   setLang?: (lang: "zh" | "en") => void
 }
 
-const navItems = {
-  zh: [
-    { name: "首页", href: "/" },
-    { name: "产品", href: "/features" },
-    { name: "定价", href: "/pricing" },
-    // { name: "演示", href: "/demo" }, // 暂时移除，因为页面不存在
-    { name: "更新日志", href: "/changelog" },
-    { name: "文档", href: "/docs" },
-  ],
-  en: [
-    { name: "Home", href: "/" },
-    { name: "Features", href: "/features" },
-    { name: "Pricing", href: "/pricing" },
-    // { name: "Demo", href: "/demo" }, // Temporarily removed as page does not exist
-    { name: "Changelog", href: "/changelog" },
-    { name: "Docs", href: "/docs" },
-  ],
-}
-
-export default function Header({ lang, setLang }: HeaderProps) {
+export default function Header({}: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
+  const { t } = useTranslation()
+
+  // Navigation items using translations
+  const navItems = [
+    { name: t("navigation.home"), href: "/" },
+    { name: t("navigation.features"), href: "/features" },
+    { name: t("navigation.pricing"), href: "/pricing" },
+    // { name: t("navigation.demo"), href: "/demo" }, // Temporarily removed as page does not exist
+    { name: t("navigation.changelog"), href: "/changelog" },
+    { name: t("navigation.docs"), href: "/docs" },
+  ]
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-200">
@@ -55,7 +50,7 @@ export default function Header({ lang, setLang }: HeaderProps) {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {navItems[lang].map((item, index) => (
+            {navItems.map((item, index) => (
               <motion.div
                 key={item.name}
                 initial={{ opacity: 0, y: -10 }}
@@ -75,20 +70,12 @@ export default function Header({ lang, setLang }: HeaderProps) {
           </nav>
 
           <div className="flex items-center space-x-4">
-            {/* Language Toggle */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setLang?.(lang === "zh" ? "en" : "zh")}
-              className="flex items-center space-x-1"
-            >
-              <Globe className="h-4 w-4" />
-              <span>{lang === "zh" ? "EN" : "中文"}</span>
-            </Button>
+            {/* Language Selector */}
+            <LanguageSelector />
 
             <div className="hidden md:flex items-center space-x-2">
-              <Button variant="ghost">{lang === "zh" ? "登录" : "Sign In"}</Button>
-              <Button>{lang === "zh" ? "注册" : "Sign Up"}</Button>
+              <Button variant="ghost">{t("common.signIn")}</Button>
+              <Button>{t("common.signUp")}</Button>
             </div>
 
             {/* Mobile Menu */}
@@ -100,7 +87,7 @@ export default function Header({ lang, setLang }: HeaderProps) {
               </SheetTrigger>
               <SheetContent>
                 <div className="flex flex-col space-y-4 mt-8">
-                  {navItems[lang].map((item) => (
+                  {navItems.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
@@ -112,11 +99,16 @@ export default function Header({ lang, setLang }: HeaderProps) {
                       {item.name}
                     </Link>
                   ))}
-                  <div className="pt-4 border-t">
-                    <Button variant="ghost" className="w-full justify-start">
-                      {lang === "zh" ? "登录" : "Sign In"}
-                    </Button>
-                    <Button className="w-full mt-2">{lang === "zh" ? "注册" : "Sign Up"}</Button>
+                  <div className="pt-4 border-t space-y-4">
+                    <div className="flex justify-center">
+                      <LanguageSelector />
+                    </div>
+                    <div className="space-y-2">
+                      <Button variant="ghost" className="w-full justify-start">
+                        {t("common.signIn")}
+                      </Button>
+                      <Button className="w-full">{t("common.signUp")}</Button>
+                    </div>
                   </div>
                 </div>
               </SheetContent>
