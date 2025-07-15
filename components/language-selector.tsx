@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Check } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
-import { CNFlag, USFlag, WorldIcon } from "@/components/icons/flags";
+import { CNFlag, USFlag } from "@/components/icons/flags";
 import { Button } from "@/components/ui/button";
 
 interface LanguageOption {
@@ -49,10 +49,9 @@ export default function LanguageSelector() {
         className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
         aria-label="Select language"
       >
-        <WorldIcon className="h-4 w-4 text-gray-600" />
         {currentLanguage && (
           <>
-            <currentLanguage.flag className="h-4 w-4 rounded-sm" />
+            <currentLanguage.flag className="h-5 w-5 rounded-sm" />
             <span className="text-sm font-medium text-gray-700">
               {currentLanguage.nativeName}
             </span>

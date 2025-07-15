@@ -10,48 +10,17 @@ import BreadcrumbNav from "@/components/breadcrumb-nav"
 import MarkdownRenderer from "@/components/markdown-renderer"
 import type { DocData, DocMeta } from "@/lib/docs"
 import { Input } from "@/components/ui/input"
+import { useTranslation } from "@/lib/i18n"
 
 interface DocPageProps {
   docData: DocData
   allDocs: DocMeta[]
 }
 
-const translations = {
-  zh: {
-    backToDocs: "返回文档列表",
-    lastUpdated: "最后更新",
-    tableOfContents: "目录",
-    relatedDocs: "相关文档",
-    searchDocs: "搜索文档...",
-    categories: {
-      "getting-started": "入门指南",
-      "api-reference": "API参考",
-      guides: "使用指南",
-      examples: "代码示例",
-      troubleshooting: "故障排除",
-      uncategorized: "未分类",
-    },
-  },
-  en: {
-    backToDocs: "Back to Docs List",
-    lastUpdated: "Last Updated",
-    tableOfContents: "Table of Contents",
-    relatedDocs: "Related Documents",
-    searchDocs: "Search docs...",
-    categories: {
-      "getting-started": "Getting Started",
-      "api-reference": "API Reference",
-      guides: "Guides",
-      examples: "Examples",
-      troubleshooting: "Troubleshooting",
-      uncategorized: "Uncategorized",
-    },
-  },
-}
+
 
 export default function DocPage({ docData, allDocs }: DocPageProps) {
-  const [lang, setLang] = useState<"zh" | "en">("zh")
-  const t = translations[lang]
+  const { t } = useTranslation()
   const [searchTerm, setSearchTerm] = useState("")
   const [headings, setHeadings] = useState<{ id: string; text: string; level: number }[]>([])
 
@@ -83,8 +52,8 @@ export default function DocPage({ docData, allDocs }: DocPageProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
-      <Header lang={lang} setLang={setLang} />
-      <BreadcrumbNav lang={lang} currentPage={docData.title} pathSegments={docData.slug.split("/")} />
+      <Header />
+      <BreadcrumbNav currentPage={docData.title} pathSegments={docData.slug.split("/")} />
 
       <section className="relative overflow-hidden pt-8 pb-16">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-purple-600/5 to-teal-600/5" />
@@ -97,7 +66,7 @@ export default function DocPage({ docData, allDocs }: DocPageProps) {
           >
             <Link href="/docs" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-6">
               <ArrowLeft className="w-4 h-4 mr-2" />
-              {t.backToDocs}
+              {t("docs.backToDocs")}
             </Link>
 
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">{docData.title}</h1>
@@ -106,7 +75,7 @@ export default function DocPage({ docData, allDocs }: DocPageProps) {
               {docData.lastUpdated && (
                 <span className="flex items-center">
                   <Calendar className="w-4 h-4 mr-1" />
-                  {t.lastUpdated}: {docData.lastUpdated}
+                  {t("docs.lastUpdated")}: {docData.lastUpdated}
                 </span>
               )}
               {docData.tags && docData.tags.length > 0 && (
@@ -132,7 +101,7 @@ export default function DocPage({ docData, allDocs }: DocPageProps) {
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
             <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
               <BookOpen className="w-5 h-5 mr-2" />
-              {t.tableOfContents}
+              {t("docs.tableOfContents")}
             </h3>
             <nav>
               <ul className="space-y-2">
@@ -180,11 +149,11 @@ export default function DocPage({ docData, allDocs }: DocPageProps) {
           <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
             <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
               <Search className="w-5 h-5 mr-2" />
-              {t.searchDocs}
+              {t("docs.searchPlaceholder")}
             </h3>
             <Input
               type="text"
-              placeholder={t.searchDocs}
+              placeholder={t("docs.searchPlaceholder")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full"
@@ -193,7 +162,7 @@ export default function DocPage({ docData, allDocs }: DocPageProps) {
 
           {related.length > 0 && (
             <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">{t.relatedDocs}</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">{t("docs.relatedDocs")}</h3>
               <ul className="space-y-3">
                 {related.map((doc) => (
                   <li key={doc.slug}>
@@ -209,7 +178,7 @@ export default function DocPage({ docData, allDocs }: DocPageProps) {
         </motion.aside>
       </div>
 
-      <Footer lang={lang} />
+      <Footer />
     </div>
   )
 }

@@ -4,9 +4,11 @@ import { motion } from "framer-motion"
 import { Plus, Zap, Bug, ArrowUp, Calendar, Tag } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { useLanguage, useTranslation } from "@/lib/i18n"
 
 interface ChangelogSectionProps {
-  lang: "zh" | "en"
+  // Optional props for backward compatibility
+  lang?: "zh" | "en"
 }
 
 const changelogData = {
@@ -166,7 +168,9 @@ const getVersionBadgeColor = (type: string) => {
   }
 }
 
-export default function ChangelogSection({ lang }: ChangelogSectionProps) {
+export default function ChangelogSection({ lang: propLang }: ChangelogSectionProps) {
+  const { language } = useLanguage()
+  const lang = propLang || language
   const data = changelogData[lang]
 
   return (

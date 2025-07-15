@@ -5,9 +5,11 @@ import { Check, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { useLanguage } from "@/lib/i18n"
 
 interface PricingSectionProps {
-  lang: "zh" | "en"
+  // Optional props for backward compatibility
+  lang?: "zh" | "en"
 }
 
 const pricingData = {
@@ -83,7 +85,9 @@ const pricingData = {
   },
 }
 
-export default function PricingSection({ lang }: PricingSectionProps) {
+export default function PricingSection({ lang: propLang }: PricingSectionProps) {
+  const { language } = useLanguage()
+  const lang = propLang || language
   const data = pricingData[lang]
 
   return (

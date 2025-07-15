@@ -3,9 +3,11 @@
 import { motion } from "framer-motion"
 import { Zap, Shield, Globe, Code, BarChart3, Clock } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { useLanguage } from "@/lib/i18n"
 
 interface FeaturesSectionProps {
-  lang: "zh" | "en"
+  // Optional props for backward compatibility
+  lang?: "zh" | "en"
 }
 
 const features = {
@@ -75,7 +77,9 @@ const features = {
   ],
 }
 
-export default function FeaturesSection({ lang }: FeaturesSectionProps) {
+export default function FeaturesSection({ lang: propLang }: FeaturesSectionProps) {
+  const { language } = useLanguage()
+  const lang = propLang || language
   const featureList = features[lang]
 
   return (

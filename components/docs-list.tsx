@@ -7,42 +7,23 @@ import { Input } from "@/components/ui/input"
 import { Search, Folder } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import type { DocMeta } from "@/lib/docs"
+import { useLanguage, useTranslation } from "@/lib/i18n"
 
 interface DocsListProps {
-  lang: "zh" | "en"
+  // Optional props for backward compatibility
+  lang?: "zh" | "en"
   docs: DocMeta[]
 }
 
-const translations = {
-  zh: {
-    searchPlaceholder: "搜索文档...",
-    categories: {
-      "getting-started": "入门指南",
-      "api-reference": "API参考",
-      guides: "使用指南",
-      examples: "代码示例",
-      troubleshooting: "故障排除",
-      uncategorized: "未分类",
-    },
-    noResults: "没有找到匹配的文档。",
-  },
-  en: {
-    searchPlaceholder: "Search documentation...",
-    categories: {
-      "getting-started": "Getting Started",
-      "api-reference": "API Reference",
-      guides: "Guides",
-      examples: "Examples",
-      troubleshooting: "Troubleshooting",
-      uncategorized: "Uncategorized",
-    },
-    noResults: "No matching documents found.",
-  },
-}
 
-export default function DocsList({ lang, docs }: DocsListProps) {
-  const t = translations[lang]
+
+export default function DocsList({ lang: propLang, docs }: DocsListProps) {
+  const { language } = useLanguage()
+  const { t } = useTranslation()
   const [searchTerm, setSearchTerm] = useState("")
+
+  // Use context language if no prop is provided
+  const lang = propLang || language
 
   const filtered = docs.filter((doc) => {
     const q = searchTerm.toLowerCase()
@@ -56,7 +37,7 @@ export default function DocsList({ lang, docs }: DocsListProps) {
 
   const grouped = filtered.reduce(
     (acc, doc) => {
-      const cat = t.categories[doc.category as keyof typeof t.categories] || t.categories.uncategorized
+      const cat = t(`docs.categories.${doc.category}`) || t("docs.categories.uncategorized")
       ;(acc[cat] ||= []).push(doc)
       return acc
     },
@@ -68,7 +49,7 @@ export default function DocsList({ lang, docs }: DocsListProps) {
       <div className="mt-8 max-w-md mx-auto relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
         <Input
-          placeholder={t.searchPlaceholder}
+          placeholder={t("docs.searchPlaceholder")}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full pl-10"
@@ -76,7 +57,7 @@ export default function DocsList({ lang, docs }: DocsListProps) {
       </div>
 
       <div className="pt-16">
-        {Object.keys(grouped).length === 0 && <p className="text-center text-gray-600">{t.noResults}</p>}
+        {Object.keys(grouped).length === 0 && <p className="text-center text-gray-600">{t("common.noResults")}</p>}
 
         {Object.entries(grouped).map(([cat, list], i) => (
           <div key={cat} className="mb-12">

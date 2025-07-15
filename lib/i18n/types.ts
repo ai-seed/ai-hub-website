@@ -134,6 +134,19 @@ export interface Translations {
     number: string;
     label: string;
   }>;
+  faq: {
+    title: string;
+    items: Array<{
+      question: string;
+      answer: string;
+    }>;
+  };
+  newsletter: {
+    title: string;
+    description: string;
+    placeholder: string;
+    button: string;
+  };
 }
 
 // Type for nested object keys (for translation key paths)

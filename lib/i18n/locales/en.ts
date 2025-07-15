@@ -153,4 +153,27 @@ export const en: Translations = {
     { number: "10M+", label: "Monthly API Calls" },
     { number: "150+", label: "Countries Served" },
   ],
+  faq: {
+    title: "Frequently Asked Questions",
+    items: [
+      {
+        question: "How is billing calculated?",
+        answer: "We use a pay-as-you-go billing model based on your actual API calls and data usage, with no minimum consumption requirements.",
+      },
+      {
+        question: "Is there a free tier?",
+        answer: "Yes, all new users receive $10 in free credits upon registration, which is sufficient for testing and evaluating our services.",
+      },
+      {
+        question: "What payment methods are supported?",
+        answer: "We support various payment methods including credit cards, PayPal, and bank transfers for enterprise customers.",
+      },
+    ],
+  },
+  newsletter: {
+    title: "Subscribe to Updates",
+    description: "Get notified about new feature releases and important updates",
+    placeholder: "Enter your email address",
+    button: "Subscribe",
+  },
 };

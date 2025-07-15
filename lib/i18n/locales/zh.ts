@@ -153,4 +153,27 @@ export const zh: Translations = {
     { number: "10M+", label: "月API调用量" },
     { number: "150+", label: "服务国家地区" },
   ],
+  faq: {
+    title: "常见问题",
+    items: [
+      {
+        question: "如何计费？",
+        answer: "我们采用按量计费模式，根据您实际使用的API调用次数和数据量进行计费，无最低消费要求。",
+      },
+      {
+        question: "是否有免费额度？",
+        answer: "是的，所有新用户注册后可获得¥50的免费使用额度，足够您测试和评估我们的服务。",
+      },
+      {
+        question: "支持哪些支付方式？",
+        answer: "我们支持支付宝、微信支付、银行卡等多种支付方式，同时支持企业对公转账。",
+      },
+    ],
+  },
+  newsletter: {
+    title: "订阅更新通知",
+    description: "第一时间获取最新功能发布和重要更新通知",
+    placeholder: "输入您的邮箱地址",
+    button: "订阅",
+  },
 };
