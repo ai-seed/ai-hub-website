@@ -1,3 +1,5 @@
+# docker buildx build --platform linux/amd64 -t ai-hub-website:v0.2.0  .
+
 # 构建阶段
 FROM node:22.17.0-alpine AS builder
 WORKDIR /app
