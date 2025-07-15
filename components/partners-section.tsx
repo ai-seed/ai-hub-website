@@ -15,10 +15,11 @@ const partnersData = {
       tech: {
         title: "技术合作伙伴",
         partners: [
-          { name: "OpenAI", logo: "/images/openai.svg", url: "https://openai.com" },
-          { name: "Google Cloud", logo: "/images/google-cloud.svg", url: "https://cloud.google.com", className: "mt-2"},
+          { name: "OpenAI", logo: "/images/openai.svg", url: "https://openai.com"},
+          { name: "Google Cloud", logo: "/images/google-cloud.svg", url: "https://cloud.google.com"},
+          // { name: "Google Cloud", logo: "/images/google-cloud.svg", url: "https://cloud.google.com", className: "mt-2"},
           { name: "Microsoft Azure", logo: "/images/microsoft-azure.svg", url: "https://azure.microsoft.com"},
-          { name: "AWS", logo: "/images/amazon.svg", url: "https://aws.amazon.com" },
+          { name: "AWS", logo: "/images/amazon.svg", url: "https://aws.amazon.com"},
         ],
       },
       // enterprise: {
@@ -62,16 +63,8 @@ const partnersData = {
         title: "Technology Partners",
         partners: [
           { name: "OpenAI", logo: "/placeholder.svg?height=60&width=120&text=OpenAI", url: "https://openai.com" },
-          {
-            name: "Google Cloud",
-            logo: "/placeholder.svg?height=60&width=120&text=Google",
-            url: "https://cloud.google.com",
-          },
-          {
-            name: "Microsoft Azure",
-            logo: "/placeholder.svg?height=60&width=120&text=Azure",
-            url: "https://azure.microsoft.com",
-          },
+          { name: "Google Cloud", logo: "/placeholder.svg?height=60&width=120&text=Google", url: "https://cloud.google.com", },
+          { name: "Microsoft Azure", logo: "/placeholder.svg?height=60&width=120&text=Azure", url: "https://azure.microsoft.com", },
           { name: "AWS", logo: "/placeholder.svg?height=60&width=120&text=AWS", url: "https://aws.amazon.com" },
         ],
       },
@@ -157,10 +150,10 @@ export default function PartnersSection({ lang }: PartnersSectionProps) {
                             <img
                               src={partner.logo || "/placeholder.svg"}
                               alt={partner.name}
-                              // className="max-w-full max-h-full object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300"
-                              className={`max-w-full max-h-full object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300 ${
-                                partner.className || ""
-                              }`}
+                              className="max-w-full max-h-full object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300"
+                              // className={`max-w-full max-h-full object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300 ${
+                              //     partner.className || ""
+                              // }`}
                             />
                           </a>
                         </CardContent>
